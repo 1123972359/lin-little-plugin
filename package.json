@@ -43,14 +43,31 @@
         "title": "转换大小写"
       }
     ],
+    "submenus": [
+      {
+        "id": "lin-little-plugin.menulist",
+        "label": "小插件"
+      }
+    ],
     "menus": {
-      "editor/context": [
+      "lin-little-plugin.menulist": [
         {
           "command": "lin-little-plugin.translate2En",
-          "group": "navigation"
+          "group": "group1@1"
         },
         {
           "command": "lin-little-plugin.translate2Zh",
+          "group": "group1@2"
+        },
+        {
+          "command": "lin-little-plugin.transformUpper",
+          "group": "group1@3"
+        }
+      ],
+      "editor/context": [
+        {
+          "submenu": "lin-little-plugin.menulist",
+          "when": "editorHasSelection",
           "group": "navigation"
         }
       ]
