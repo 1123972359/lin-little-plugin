@@ -74,7 +74,8 @@ export namespace TranslatePlugins {
     if (!text) {
       return;
     }
-    const res = await http4Translate(text, to);
+    const transformText = tranformHump4En(text);
+    const res = await http4Translate(transformText, to);
     if (!res) {
       return;
     }
@@ -82,5 +83,28 @@ export namespace TranslatePlugins {
       .reduce((p, c) => p.concat(c.dst), [] as string[])
       .join(",");
     vscode.window.showInputBox({ value });
+  }
+
+  /**
+   * 将英文驼峰分开
+   * @example
+   * ```js
+   * helloBaby -> hello Baby
+   * ```
+   */
+  function tranformHump4En(text: string) {
+    const res: string[] = [];
+    let start = 0;
+    let end = 0;
+    while (end < text.length) {
+      if (text[end] !== " " && text[end] === text[end].toUpperCase()) {
+        res.push(text.slice(start, end));
+        start = end++;
+        continue;
+      }
+      end++;
+    }
+    res.push(text.slice(start, end));
+    return res.join(" ");
   }
 }
