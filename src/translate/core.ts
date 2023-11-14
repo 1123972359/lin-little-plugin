@@ -74,7 +74,8 @@ export namespace TranslatePlugins {
     if (!text) {
       return;
     }
-    const transformText = tranformHump4En(text);
+    const transformText = transformEnText(text);
+    console.log(`transformText --->`, transformText);
     const res = await http4Translate(transformText, to);
     if (!res) {
       return;
@@ -86,25 +87,47 @@ export namespace TranslatePlugins {
   }
 
   /**
-   * 将英文驼峰分开
+   * 处理英文,转换成更好去翻译的格式
+   *
    * @example
+   * - 驼峰
    * ```js
    * helloBaby -> hello Baby
    * ```
+   * - 下划线
+   * ```js
+   * hello_baby -> hello baby
+   * ```
+   * 
+   * @example
+   * `LOAD_TIME_CanSearch` 翻译结果为 `加载时间可以搜索`
    */
-  function tranformHump4En(text: string) {
-    const res: string[] = [];
-    let start = 0;
+  function transformEnText(text: string) {
+    text = text.replaceAll("_", " ");
+
+    function isLower(t: string) {
+      return t && t === t.toLowerCase();
+    }
+
+    const res: string[] = [""];
     let end = 0;
-    while (end < text.length) {
-      if (text[end] !== " " && text[end] === text[end].toUpperCase()) {
-        res.push(text.slice(start, end));
-        start = end++;
+    let cur = "";
+    let next = "";
+    while (end <= text.length) {
+      cur = text[end];
+      next = text[end + 1];
+      if (isLower(cur)) {
+        res[res.length - 1] += cur;
+        if (!isLower(next)) {
+          res.push(next);
+          end++;
+        }
+        end++;
         continue;
       }
+      res[res.length - 1] += cur || "";
       end++;
     }
-    res.push(text.slice(start, end));
     return res.join(" ");
   }
 }

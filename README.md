@@ -10,6 +10,8 @@ This is a 'vscode' plugin that provides some small features.
   - 快捷键 `ctrl+alt+1`
 - `lin-little-plugin.translate2zh`
   - 快捷键 `ctrl+alt+2`
+  - 支持以下格式
+    - `LOAD_TIME_CanSearch` 翻译结果为 `加载时间可以搜索`
 
 ### 翻译配置`setting.json`
 
