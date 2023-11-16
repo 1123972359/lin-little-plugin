@@ -12,7 +12,9 @@
   "categories": [
     "Other"
   ],
-  "activationEvents": [],
+  "activationEvents": [
+    "*"
+  ],
   "main": "./dist/extension.js",
   "contributes": {
     "configuration": {
@@ -41,6 +43,10 @@
       {
         "command": "lin-little-plugin.transformUpper",
         "title": "转换大小写"
+      },
+      {
+        "command": "lin-little-plugin.createMarkdownSnippets",
+        "title": "创建`markdown`片段"
       }
     ],
     "submenus": [
@@ -53,21 +59,27 @@
       "lin-little-plugin.menulist": [
         {
           "command": "lin-little-plugin.translate2En",
-          "group": "group1@1"
+          "group": "group1@1",
+          "when": "editorHasSelection"
         },
         {
           "command": "lin-little-plugin.translate2Zh",
-          "group": "group1@2"
+          "group": "group1@2",
+          "when": "editorHasSelection"
         },
         {
           "command": "lin-little-plugin.transformUpper",
-          "group": "group1@3"
+          "group": "group1@3",
+          "when": "editorHasSelection"
+        },
+        {
+          "command": "lin-little-plugin.createMarkdownSnippets",
+          "group": "group1@4"
         }
       ],
       "editor/context": [
         {
           "submenu": "lin-little-plugin.menulist",
-          "when": "editorHasSelection",
           "group": "navigation"
         }
       ]

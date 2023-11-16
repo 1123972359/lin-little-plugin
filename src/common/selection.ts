@@ -33,4 +33,30 @@ export namespace SelectionUtils {
       editBuilder.replace(selection, newText);
     });
   };
+
+  export const insert = (text: string) => {
+    const editor = vscode.window.activeTextEditor;
+    if (!editor) {
+      return;
+    }
+    const Ranges = editor.selections;
+    const positionList: vscode.Position[] = [];
+    Ranges.forEach((range) => {
+      const position = new vscode.Position(
+        range.start.line,
+        range.start.character
+      );
+      positionList.push(position);
+    });
+    editor.edit((editBuilder) => {
+      positionList.forEach((position) => {
+        editBuilder.insert(position, text);
+      });
+    });
+  };
+
+  /** 换行 */
+  export const insertLineAfter = () => {
+    vscode.commands.executeCommand("editor.action.insertLineAfter");
+  };
 }

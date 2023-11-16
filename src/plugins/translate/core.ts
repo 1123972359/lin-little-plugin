@@ -1,8 +1,8 @@
 import * as vscode from "vscode";
 import { To, TranslateStore, http4Translate } from ".";
-import { SelectionUtils, ShortCutParams } from "../common";
+import { SelectionUtils, ShortCutParams } from "../../common";
 
-export namespace TranslatePlugins {
+export namespace TranslateShortCut {
   export const install = (): ShortCutParams[] => {
     return [
       // 翻译英文

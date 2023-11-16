@@ -1,11 +1,18 @@
 import * as vscode from "vscode";
-import { TranslatePlugins } from "./translate";
 import { ShortCut } from "./common";
-import { TransformPlugins } from "./transofrm";
+import {
+  MarkdownShortCut,
+  TransformShortCut,
+  TranslateShortCut,
+} from "./plugins";
 
 export function activate(context: vscode.ExtensionContext) {
   const shortCut = new ShortCut(context);
-  shortCut.use(TranslatePlugins.install).use(TransformPlugins.install).create();
+  shortCut
+    .use(TranslateShortCut.install)
+    .use(TransformShortCut.install)
+    .use(MarkdownShortCut.install)
+    .create();
 }
 
 export function deactivate() {}
