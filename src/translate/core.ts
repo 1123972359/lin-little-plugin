@@ -12,7 +12,8 @@ export namespace TranslatePlugins {
           if (await checkLogin()) {
             return;
           }
-          await translateCallback("en");
+          const value = await translateCallback("en");
+          showInputBox({ value: transformEnValue2Hamp(value) });
         },
       },
       // 翻译中文
@@ -22,7 +23,8 @@ export namespace TranslatePlugins {
           if (await checkLogin()) {
             return;
           }
-          await translateCallback("zh");
+          const value = await translateCallback("zh");
+          showInputBox({ value });
         },
       },
     ];
@@ -72,17 +74,25 @@ export namespace TranslatePlugins {
   async function translateCallback(to: To) {
     const text = SelectionUtils.getText(SelectionUtils.get());
     if (!text) {
-      return;
+      return "";
     }
     const transformText = transformEnText(text);
     console.log(`transformText --->`, transformText);
     const res = await http4Translate(transformText, to);
     if (!res) {
-      return;
+      return "";
     }
     const value = res.trans_result
       .reduce((p, c) => p.concat(c.dst), [] as string[])
       .join(",");
+    return value;
+  }
+
+  function showInputBox(params: { value?: string }) {
+    const { value } = params;
+    if (!value) {
+      return;
+    }
     vscode.window.showInputBox({ value });
   }
 
@@ -98,7 +108,7 @@ export namespace TranslatePlugins {
    * ```js
    * hello_baby -> hello baby
    * ```
-   * 
+   *
    * @example
    * `LOAD_TIME_CanSearch` 翻译结果为 `加载时间可以搜索`
    */
@@ -129,5 +139,22 @@ export namespace TranslatePlugins {
       end++;
     }
     return res.join(" ");
+  }
+
+  /**
+   * 转换英文变成驼峰
+   */
+  function transformEnValue2Hamp(text: string) {
+    const [f, ...r] = text.split(" ");
+    return r.reduce(
+      (pre, cur) => {
+        const [first, ...rest] = cur;
+        return (pre += first.toUpperCase() + rest.join(""));
+      },
+      f.split("").reduce((pre, cur) => {
+        const [first, ...rest] = cur;
+        return (pre += first.toLowerCase() + rest.join(""));
+      }, "")
+    );
   }
 }
