@@ -1,5 +1,5 @@
 export * from "./selection";
-export * from "./shortcut";
+export * from "./command";
 
 export const sleep = async (duration: number = 1000) => {
   return new Promise((r) => {

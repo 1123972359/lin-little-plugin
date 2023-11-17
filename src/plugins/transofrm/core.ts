@@ -1,7 +1,7 @@
-import { SelectionUtils, ShortCutParams } from "../../common";
+import { SelectionUtils, CommandParams } from "../../common";
 
-export namespace TransformShortCut {
-  export const install = (): ShortCutParams => {
+export namespace TransformCommand {
+  export const install = (): CommandParams => {
     return {
       command: "lin-little-plugin.transformUpper",
       async callback() {

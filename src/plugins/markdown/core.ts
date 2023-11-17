@@ -1,13 +1,21 @@
 import { window } from "vscode";
-import { SelectionUtils, ShortCutParams, sleep } from "../../common";
+import { SelectionUtils, CommandParams, sleep } from "../../common";
+import { MarkdownUtils } from "./utils";
 
-export namespace MarkdownShortCut {
-  export const install = (): ShortCutParams[] => {
+export namespace MarkdownCommand {
+  export const install = (): CommandParams[] => {
     return [
       {
         command: "lin-little-plugin.createMarkdownSnippets",
         async callback() {
-          await showSelect4MarkdownFunction();
+          if (
+            window.activeTextEditor &&
+            window.activeTextEditor.document.languageId === "markdown"
+          ) {
+            await showSelect4MarkdownFunction();
+          } else {
+            window.showInformationMessage("只能在.md中执行");
+          }
         },
       },
     ];
@@ -34,12 +42,31 @@ export namespace MarkdownShortCut {
   }
 }
 
-const RN = "\r\n";
-
 export namespace MarkdownSnippets {
   /** 注入`table`片段 */
   export async function inputTableSnippets() {
-    const template = ["| 视频名字 | 视频链接 |", "| -- | -- |"];
-    SelectionUtils.insert(RN + template.join(RN));
+    const row = await window.showInputBox({
+      title: "row",
+      prompt: "多少行?",
+      value: "3",
+      validateInput(value) {
+        if (!value) {
+          return "请输入多少行";
+        }
+      },
+    });
+    const col = await window.showInputBox({
+      title: "col",
+      prompt: "多少列?",
+      value: "3",
+      validateInput(value) {
+        if (!value) {
+          return "请输入多少列";
+        }
+      },
+    });
+    const header = MarkdownUtils.createTableHeader(col || "0");
+    const content = MarkdownUtils.createTableContent(row || "0", col || "0");
+    SelectionUtils.insert(MarkdownUtils.RN + header + content);
   }
 }

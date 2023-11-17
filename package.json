@@ -12,10 +12,8 @@
   "categories": [
     "Other"
   ],
-  "activationEvents": [
-    "*"
-  ],
   "main": "./dist/extension.js",
+  "activationEvents": [],
   "contributes": {
     "configuration": {
       "type": "object",
@@ -34,11 +32,11 @@
     "commands": [
       {
         "command": "lin-little-plugin.translate2En",
-        "title": "翻译成英文"
+        "title": "翻译成英文`translate`"
       },
       {
         "command": "lin-little-plugin.translate2Zh",
-        "title": "翻译成中文"
+        "title": "翻译成中文`translate`"
       },
       {
         "command": "lin-little-plugin.transformUpper",
