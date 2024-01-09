@@ -43,3 +43,10 @@ This is a 'vscode' plugin that provides some small features.
 ### `table` 指定行和列的数量即可生成对应的代码片段
 
 ![markdownTable](./gif/markdownTable.gif)
+
+## 转换反引号`backtick`
+
+- `lin-little-plugin.backtick`
+  - 快捷键 `ctrl+alt+4`
+
+![markdownTable](./gif/backtick.gif)
