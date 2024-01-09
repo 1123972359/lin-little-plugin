@@ -45,6 +45,10 @@
       {
         "command": "lin-little-plugin.createMarkdownSnippets",
         "title": "创建`markdown`片段"
+      },
+      {
+        "command": "lin-little-plugin.backtick",
+        "title": "变成反引号"
       }
     ],
     "submenus": [
@@ -73,6 +77,11 @@
         {
           "command": "lin-little-plugin.createMarkdownSnippets",
           "group": "group1@4"
+        },
+        {
+          "command": "lin-little-plugin.backtick",
+          "group": "group1@5",
+          "when": "editorHasSelection"
         }
       ],
       "editor/context": [
@@ -99,6 +108,12 @@
         "command": "lin-little-plugin.transformUpper",
         "key": "ctrl+alt+3",
         "mac": "cmd+alt+3",
+        "when": "editorHasSelection"
+      },
+      {
+        "command": "lin-little-plugin.backtick",
+        "key": "ctrl+alt+4",
+        "mac": "cmd+alt+4",
         "when": "editorHasSelection"
       }
     ]
