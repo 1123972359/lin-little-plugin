@@ -4,7 +4,7 @@
   "description": "This is a 'vscode' plugin that provides some small features.",
   "repository": "https://github.com/1123972359/lin-little-plugin",
   "publisher": "lbb",
-  "version": "0.0.7",
+  "version": "0.0.8",
   "icon": "logo.png",
   "engines": {
     "vscode": "^1.80.2"
@@ -17,7 +17,7 @@
   "contributes": {
     "configuration": {
       "type": "object",
-      "title": "Code插件demo",
+      "title": "百度翻译配置",
       "properties": {
         "lin-little-plugin.translate-store-appid": {
           "type": "string",
