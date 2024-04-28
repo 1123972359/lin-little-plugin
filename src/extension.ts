@@ -2,6 +2,7 @@ import * as vscode from "vscode";
 import { Command } from "./common";
 import {
   BacktickCommand,
+  ExportIndexCommand,
   MarkdownCommand,
   TransformCommand,
   TranslateCommand,
@@ -14,6 +15,7 @@ export function activate(context: vscode.ExtensionContext) {
     .use(TransformCommand.install)
     .use(MarkdownCommand.install)
     .use(BacktickCommand.install)
+    .use(ExportIndexCommand.install)
     .create();
 }
 

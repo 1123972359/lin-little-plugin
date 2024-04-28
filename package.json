@@ -49,6 +49,10 @@
       {
         "command": "lin-little-plugin.backtick",
         "title": "变成反引号"
+      },
+      {
+        "command": "lin-little-plugin.exportIndex",
+        "title": "生成导出文件"
       }
     ],
     "submenus": [
@@ -88,6 +92,14 @@
         {
           "submenu": "lin-little-plugin.menulist",
           "group": "navigation"
+        }
+      ],
+      "explorer/context": [
+        {
+          "command": "lin-little-plugin.exportIndex",
+          "title": "生成导出文件",
+          "group": "group1",
+          "when": "explorerResourceIsFolder"
         }
       ]
     },
