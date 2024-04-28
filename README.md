@@ -50,3 +50,10 @@ This is a 'vscode' plugin that provides some small features.
   - 快捷键 `ctrl+alt+4`
 
 ![markdownTable](./gif/backtick.gif)
+
+## 创建默认导出文件*index.ts* `exportIndex`
+
+- `lin-little-plugin.exportIndex`
+  - 资源管理器右键文件夹
+
+![markdownTable](./gif/exportIndex.gif)
