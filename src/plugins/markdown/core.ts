@@ -1,6 +1,7 @@
 import { window } from "vscode";
-import { SelectionUtils, CommandParams, sleep } from "../../common";
+import { CommandParams } from "../../common";
 import { MarkdownUtils } from "./utils";
+import { SelectionUtils } from "../../utils";
 
 export namespace MarkdownCommand {
   export const install = (): CommandParams[] => {

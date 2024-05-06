@@ -1,4 +1,5 @@
-import { SelectionUtils, CommandParams } from "../../common";
+import { CommandParams } from "../../common";
+import { SelectionUtils } from "../../utils";
 
 export namespace BacktickCommand {
   export const install = (): CommandParams => {

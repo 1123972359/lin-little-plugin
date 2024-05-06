@@ -1,6 +1,7 @@
 import * as vscode from "vscode";
 import { To, TranslateStore, http4Translate } from ".";
-import { SelectionUtils, CommandParams } from "../../common";
+import { CommandParams } from "../../common";
+import { SelectionUtils } from "../../utils";
 
 export namespace TranslateCommand {
   export const install = (): CommandParams[] => {
@@ -149,6 +150,9 @@ export namespace TranslateCommand {
     return r.reduce(
       (pre, cur) => {
         const [first, ...rest] = cur;
+        if (!cur) {
+          return pre;
+        }
         return (pre += first.toUpperCase() + rest.join(""));
       },
       f.split("").reduce((pre, cur) => {

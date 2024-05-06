@@ -1,11 +1,11 @@
 import * as vscode from "vscode";
 
-export type CommandParams =
-  | vscode.Disposable
-  | {
-      command: string;
-      callback: (...args: any[]) => any;
-    };
+export type CommandParamsObject = {
+  command: string;
+  callback: (...args: any[]) => any;
+};
+
+export type CommandParams = vscode.Disposable | CommandParamsObject;
 
 export class Command {
   private _command: CommandParams[] = [];
